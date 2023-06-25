@@ -1,0 +1,33 @@
+import random
+
+def divide_teams(members, num_teams):
+    random.shuffle(members)
+    team_size = len(members) // num_teams
+    teams = [members[i:i+team_size] for i in range(0, len(members), team_size)]
+    return teams
+
+def get_user_input():
+    num_members = int(input("Enter the number of team members: "))
+    num_teams = int(input("Enter the number of teams: "))
+
+    members = []
+    for i in range(1, num_members + 1):
+        member = input(f"Enter the name of team member {i}: ")
+        members.append(member)
+
+    return members, num_teams
+
+def display_teams(teams):
+    for i, team in enumerate(teams):
+        print(f"Team {i+1}:")
+        print(team)
+        print()
+
+# Get user input
+team_members, num_teams = get_user_input()
+
+# Divide teams
+teams = divide_teams(team_members, num_teams)
+
+# Display team assignments
+display_teams(teams)
